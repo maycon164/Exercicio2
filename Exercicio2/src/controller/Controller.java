@@ -15,7 +15,7 @@ public class Controller {
 		Process process;
 		try {
 			if (os.contains("Linux")) {
-				process = Runtime.getRuntime().exec("lsof");
+				process = Runtime.getRuntime().exec("ps -ef");
 			} else {
 				process = Runtime.getRuntime().exec("tasklist");
 			}
@@ -40,7 +40,7 @@ public class Controller {
 		Process process;
 		try {
 			if (os.contains("Linux")) {
-				process = Runtime.getRuntime().exec("kill -15 "+pid);
+				process = Runtime.getRuntime().exec("kill -9 "+pid);
 			}else {
 				process = Runtime.getRuntime().exec("taskkill /pid "+pid);
 			}
@@ -53,7 +53,7 @@ public class Controller {
 		Process process;
 		try {
 			if (os.contains("Linux")) {
-				process = Runtime.getRuntime().exec("killall "+nome);
+				process = Runtime.getRuntime().exec("pkill -f "+nome);
 			}else {
 				process = Runtime.getRuntime().exec("taskkill /im "+nome);
 			}
