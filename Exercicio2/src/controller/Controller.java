@@ -6,9 +6,6 @@ import java.io.InputStreamReader;
 
 public class Controller {
 
-	public Controller() {
-		super();
-	}
 
 	public String indentificaSO() {
 		return System.getProperty("os.name");
@@ -38,7 +35,32 @@ public class Controller {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void matarProcessoPID(int pid, String os) {
+		Process process;
+		try {
+			if (os.contains("Linux")) {
+				process = Runtime.getRuntime().exec("kill -15 "+pid);
+			}else {
+				process = Runtime.getRuntime().exec("taskkill /pid "+pid);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void matarProcessoNome(String nome, String os) {
+		Process process;
+		try {
+			if (os.contains("Linux")) {
+				process = Runtime.getRuntime().exec("killall "+nome);
+			}else {
+				process = Runtime.getRuntime().exec("taskkill /im "+nome);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 
 }
